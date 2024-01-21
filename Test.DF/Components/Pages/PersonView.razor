@@ -12,6 +12,14 @@ else
     <h3>Hello @person.FirstName</h3>
 
     <p>Your full name contains @person.VowelCount() vowels.</p>
+
+    <p>Your age today is @person.Age()</p>
+
+    <p>
+        Your next birthday is @person.NextBirthday(),
+
+        which is in @person.DaysToNextBirthday() days time.
+    </p>
 }
 
 @code {

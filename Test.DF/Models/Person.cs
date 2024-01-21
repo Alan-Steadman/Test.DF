@@ -8,6 +8,8 @@ public class Person
 
     private string FullName => $"{FirstName} {LastName}";
 
+    private static readonly DateOnly today = DateOnly.FromDateTime(DateTime.Now); // Would inject a DateTime service instead of using DateTime.Now
+
     public Person() { }
 
     private Person(string firstName, string lastName, DateOnly dob)
@@ -24,7 +26,7 @@ public class Person
             throw new ArgumentException("Full name must contain a first name and a last name seperated by a space");
         }
 
-        if (dob >= DateOnly.FromDateTime(DateTime.Now))
+        if (dob >= today)
         {
             throw new ArgumentException("Date of birth cannot be in the future");
         }
@@ -39,4 +41,31 @@ public class Person
     {
         return FullName.Count("aeiouAEIOU".Contains);
     }
+
+    public int Age()
+    {
+        var age = today.Year - Dob.Year;
+
+        if (Dob.AddYears(age) > today) age--;
+
+        return age;
+    }
+
+    public DateOnly NextBirthday()
+    {
+        var nextBirthday = new DateOnly(today.Year, Dob.Month, Dob.Day);
+
+        if (nextBirthday <= today)
+        {
+            nextBirthday = new DateOnly(today.Year + 1, Dob.Month, Dob.Day);
+        }
+
+        return nextBirthday;
+    }
+
+    public int DaysToNextBirthday()
+    {
+        return NextBirthday().DayNumber - today.DayNumber;
+    }
+
 }
