@@ -1,0 +1,47 @@
+﻿@rendermode InteractiveServer
+
+<h3>PersonCreate</h3>
+
+<p>
+    Please enter your details in the form below
+</p>
+
+<EditForm Model="@model" OnValidSubmit="@Submit" FormName="CreatePerson">
+
+    <div class="form-group mb-3">
+        <label for="fullName">Full Name</label>
+        <InputText id="fullName" @bind-Value="model!.FullName" placeholder="Full Name" class="form-control" aria-describedby="fullNameHelp" />
+        <small id="fullNameHelp">Enter your full name with a space betwen first and last names</small>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="dob">Date of Birth</label>
+        <InputDate id="dob" @bind-Value="model!.Dob" DisplayName="DOB" class="form-control" aria-describedby="dobNameHelp" />
+        <small id="dobNameHelp">Enter your date of birth</small>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+
+</EditForm>
+
+@code {
+
+    [SupplyParameterFromForm]
+    private CreatePersonDto? model { get; set; }
+
+    protected override void OnInitialized() => model ??= new();
+
+    public class CreatePersonDto
+    {
+        public string FullName { get; set; } = string.Empty;
+
+        public DateOnly Dob { get; set; }
+    }
+
+    public void Submit()
+    {
+        
+    }
+}
