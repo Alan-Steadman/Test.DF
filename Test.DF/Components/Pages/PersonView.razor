@@ -15,10 +15,14 @@ else
 @code {
     private Person? person;
 
-    protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnInitialized();
+        await base.OnAfterRenderAsync(firstRender);
 
-        person = appStateContainer.Person;
+        if (firstRender)
+        {
+            person = await appStateContainer.GetPersonAsync();
+            StateHasChanged();
+        }
     }
 }

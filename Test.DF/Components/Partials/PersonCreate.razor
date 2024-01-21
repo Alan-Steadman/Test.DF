@@ -42,7 +42,7 @@
         public DateOnly Dob { get; set; }
     }
 
-    public void Submit()
+    public async Task Submit()
     {
         Person person = Person.Create(
             fullName: model!.FullName,
@@ -59,7 +59,7 @@
         //     errorMessage = ex.Message;
         // }
 
-        appStateContainer.SetPerson(person);
+        await appStateContainer.SetPersonAsync(person);
 
         navigationManager.NavigateTo("/person");
     }

@@ -6,6 +6,8 @@ public class Person
     public string LastName { get; set; } = null!;
     public DateOnly Dob { get; set; }
 
+    public Person() { }
+
     private Person(string firstName, string lastName, DateOnly dob)
     {
         FirstName = firstName;
@@ -30,5 +32,4 @@ public class Person
 
         return new Person(firstName, lastName, dob);
     }
-
 }
