@@ -6,6 +6,8 @@ public class Person
     public string LastName { get; set; } = null!;
     public DateOnly Dob { get; set; }
 
+    private string FullName => $"{FirstName} {LastName}";
+
     public Person() { }
 
     private Person(string firstName, string lastName, DateOnly dob)
@@ -31,5 +33,10 @@ public class Person
         var lastName = fullName.Substring(fullName.IndexOf(" ") + 1); // Ignoring multiple spaces
 
         return new Person(firstName, lastName, dob);
+    }
+
+    public int VowelCount()
+    {
+        return FullName.Count("aeiouAEIOU".Contains);
     }
 }
