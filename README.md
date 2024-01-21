@@ -8,7 +8,7 @@
 - [x] display welcome message with users first name only
 - [x] display message showing how many vowels are in the name
 - [x] display message showing how old the user is and how many days before next birthday
-- [ ] show table which displays 14 days before run up to next birthday (days of week (mon, tue, wed etc..) and allow the dates to be clickable, which redirect the user to the following �https://www.historynet.com/today-in-history/june-10� with selected date
+- [x] show table which displays 14 days before run up to next birthday (days of week (mon, tue, wed etc..) and allow the dates to be clickable, which redirect the user to the following �https://www.historynet.com/today-in-history/june-10� with selected date
 
 
 # TODO

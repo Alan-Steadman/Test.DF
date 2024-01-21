@@ -68,4 +68,25 @@ public class Person
         return NextBirthday().DayNumber - today.DayNumber;
     }
 
+
+    public List<DateAndLink> ListDaysLeadingToBirthday(int daystoList = 14)
+    {
+        var nextBirthday = NextBirthday();
+        var days = new List<DateAndLink>();
+
+        for (var day = 1; day <= daystoList; day++)
+        {
+            var date = nextBirthday.AddDays(-day);
+
+            days.Add(
+                new DateAndLink(
+                    date: date,
+                    formattedDate: $"{date: ddd dd MMMM}",
+                    linkUrl: $"https://www.historynet.com/today-in-history/{date:MMMM-dd}"));
+        }
+
+        return days;
+    }
+
+    public record DateAndLink(DateOnly date, string formattedDate, string linkUrl);
 }

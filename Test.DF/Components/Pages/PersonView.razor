@@ -1,5 +1,6 @@
 ﻿@page "/person"
 @inject AppStateContainer appStateContainer
+@inject NavigationManager navigationManager
 @rendermode InteractiveServer
 
 @if (person is null)
@@ -20,6 +21,28 @@ else
 
         which is in @person.DaysToNextBirthday() days time.
     </p>
+
+    <div class="card">
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Days leading up to your birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var day in person.ListDaysLeadingToBirthday(14))
+                    {
+                        <tr @onclick="(() => Navigate(day.linkUrl))" class="clickable">
+                            <td>
+                                <span>@day.formattedDate</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 }
 
 @code {
@@ -34,5 +57,10 @@ else
             person = await appStateContainer.GetPersonAsync();
             StateHasChanged();
         }
+    }
+
+    private void Navigate(string url)
+    {
+        navigationManager.NavigateTo(url);
     }
 }
