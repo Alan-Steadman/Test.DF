@@ -1,10 +1,13 @@
 using Test.DF.Components;
+using Test.DF.Infrastructure.State;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<AppStateContainer>();
 
 var app = builder.Build();
 

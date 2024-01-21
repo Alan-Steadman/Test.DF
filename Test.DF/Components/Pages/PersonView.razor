@@ -1,0 +1,24 @@
+﻿@page "/person"
+@inject AppStateContainer appStateContainer
+@rendermode InteractiveServer
+
+@if (person is null)
+{
+    <h3>Person not found</h3>
+    <p>Try navigating back to the <a href="/">home page</a> to enter details</p>
+}
+else
+{
+    <h3>Hello @person.FirstName</h3>
+}
+
+@code {
+    private Person? person;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        person = appStateContainer.Person;
+    }
+}

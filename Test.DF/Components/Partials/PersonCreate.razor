@@ -1,4 +1,6 @@
-﻿@rendermode InteractiveServer
+﻿@inject AppStateContainer appStateContainer
+@inject NavigationManager navigationManager
+@rendermode InteractiveServer
 
 <h3>PersonCreate</h3>
 
@@ -42,6 +44,23 @@
 
     public void Submit()
     {
-        
+        Person person = Person.Create(
+            fullName: model!.FullName,
+            dob: model!.Dob);
+
+        // try
+        // {
+        //     person = Person.Create(
+        //         fullName: model!.FullName,
+        //         dob: model!.Dob);
+        // }
+        // catch (ApplicationException ex)
+        // {
+        //     errorMessage = ex.Message;
+        // }
+
+        appStateContainer.SetPerson(person);
+
+        navigationManager.NavigateTo("/person");
     }
 }
