@@ -21,9 +21,8 @@ The project will run simply by pressing F5.
 
 # TODO
 
-- [ ] Remove scaffolded items
+- [x] Remove scaffolded items
 - [x] Client side validation when creating a person
-- [ ] Create constants for page routes
 
 
 # Given More Time
@@ -38,4 +37,5 @@ In addition to the items on the list, layering the application into clean archit
   - vowel count
 - Introduce Stylecop or similar
 - Pull requests from the start
+- Create constants for page routes
 
