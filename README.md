@@ -22,8 +22,7 @@ The project will run simply by pressing F5.
 # TODO
 
 - [ ] Remove scaffolded items
-- [ ] Client side validation when creating a person
-- [ ] On server side error creating person, display error message on client screen
+- [x] Client side validation when creating a person
 - [ ] Create constants for page routes
 
 

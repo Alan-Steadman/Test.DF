@@ -1,6 +1,8 @@
-﻿namespace Test.DF.Models;
+﻿using System.Text.RegularExpressions;
 
-public class Person
+namespace Test.DF.Models;
+
+public partial class Person
 {
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
@@ -21,14 +23,14 @@ public class Person
 
     public static Person Create(string fullName, DateOnly dob)
     {
-        if (!fullName.Contains(" "))
+        if (!Regex.IsMatch(fullName, FullNameRegex))
         {
-            throw new ArgumentException("Full name must contain a first name and a last name seperated by a space");
+            throw new ArgumentException(FullNameRegexMessage);
         }
 
         if (dob >= today)
         {
-            throw new ArgumentException("Date of birth cannot be in the future");
+            throw new ArgumentException(DobFutureMessage);
         }
 
         var firstName = fullName.Substring(0, fullName.IndexOf(" "));

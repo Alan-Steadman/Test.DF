@@ -1,14 +1,16 @@
 ﻿@inject AppStateContainer appStateContainer
 @inject NavigationManager navigationManager
+@using System.ComponentModel.DataAnnotations
+@using Test.DF.Infrastructure.DataAnnotations
 @rendermode InteractiveServer
-
-<h3>PersonCreate</h3>
 
 <p>
     Please enter your details in the form below
 </p>
 
 <EditForm Model="@model" OnValidSubmit="@Submit" FormName="CreatePerson">
+
+    <DataAnnotationsValidator />
 
     <div class="form-group mb-3">
         <label for="fullName">Full Name</label>
@@ -26,6 +28,8 @@
         <button type="submit" class="btn btn-primary">Create</button>
     </div>
 
+    <ValidationSummary />
+
 </EditForm>
 
 @code {
@@ -37,8 +41,12 @@
 
     public class CreatePersonDto
     {
+        [Required]
+        [RegularExpression(Person.FullNameRegex, ErrorMessage = Person.FullNameRegexMessage)]
         public string FullName { get; set; } = string.Empty;
 
+        [Required]
+        [Past(ErrorMessage = Person.DobFutureMessage)]
         public DateOnly Dob { get; set; }
     }
 
@@ -47,17 +55,6 @@
         Person person = Person.Create(
             fullName: model!.FullName,
             dob: model!.Dob);
-
-        // try
-        // {
-        //     person = Person.Create(
-        //         fullName: model!.FullName,
-        //         dob: model!.Dob);
-        // }
-        // catch (ApplicationException ex)
-        // {
-        //     errorMessage = ex.Message;
-        // }
 
         await appStateContainer.SetPersonAsync(person);
 
