@@ -1,5 +1,5 @@
 using Test.DF.Components;
-using Test.DF.Infrastructure.State;
+using Test.DF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped<AppStateContainer>();
+builder.Services.AddClientInfrastructure();
 
 var app = builder.Build();
 
