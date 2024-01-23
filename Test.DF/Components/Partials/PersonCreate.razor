@@ -1,5 +1,7 @@
 ﻿@inject AppStateContainer appStateContainer
 @inject NavigationManager navigationManager
+@inject IDateTimeProvider dateTimeProvider
+@using Test.DF.Infrastructure.Services
 @using System.ComponentModel.DataAnnotations
 @using Test.DF.Infrastructure.DataAnnotations
 @rendermode InteractiveServer
@@ -54,7 +56,8 @@
     {
         Person person = Person.Create(
             fullName: model!.FullName,
-            dob: model!.Dob);
+            dob: model!.Dob,
+            now: dateTimeProvider.Now);
 
         await appStateContainer.SetPersonAsync(person);
 

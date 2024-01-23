@@ -4,13 +4,14 @@ namespace Test.DF.Models;
 
 public partial class Person
 {
+
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
     public DateOnly Dob { get; set; }
 
     private string FullName => $"{FirstName} {LastName}";
 
-    private static readonly DateOnly today = DateOnly.FromDateTime(DateTime.Now); // Would inject a DateTime service instead of using DateTime.Now
+    private static DateOnly today;
 
     public Person() { }
 
@@ -21,8 +22,10 @@ public partial class Person
         Dob = dob;
     }
 
-    public static Person Create(string fullName, DateOnly dob)
+    public static Person Create(string fullName, DateOnly dob, DateTime now)
     {
+        today = DateOnly.FromDateTime(now);
+
         if (!Regex.IsMatch(fullName, FullNameRegex))
         {
             throw new ArgumentException(FullNameRegexMessage);
