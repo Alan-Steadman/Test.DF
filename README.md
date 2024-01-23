@@ -39,3 +39,8 @@ In addition to the items on the list, layering the application into clean archit
 - Pull requests from the start
 - Create constants for page routes
 
+- Split out the DTOs into their own files
+- I should have retrieved the <Person?> from application state and rendered in the entry form when a user visits/returns to the Home page
+- A better name for the Infrastructure folder would have been ClientInfrastructure, also the DataAnnotations folder doesn't belong there.
+- The list of dates in the PersonView.razor could be split out into its own sub-component.
+- PersonView.razor is implemented as a page, whereas it could be cleaner to implement it as a component and always have pages orchestrating components.
