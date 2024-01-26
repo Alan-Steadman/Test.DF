@@ -74,7 +74,7 @@ public partial class Person
     }
 
 
-    public List<DateAndLink> ListDaysLeadingToBirthday(int daystoList = 14)
+    public IEnumerable<DateAndLink> ListDaysLeadingToBirthday(int daystoList = 14)
     {
         var nextBirthday = NextBirthday();
         var days = new List<DateAndLink>();
