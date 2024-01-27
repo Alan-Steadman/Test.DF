@@ -9,7 +9,7 @@ public partial class Person
     public string LastName { get; set; } = null!;
     public DateOnly Dob { get; set; }
 
-    private string FullName => $"{FirstName} {LastName}";
+    public string FullName => $"{FirstName} {LastName}";
 
     private static DateOnly today;
 

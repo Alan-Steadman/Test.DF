@@ -52,6 +52,26 @@
         public DateOnly Dob { get; set; }
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            var person = await appStateContainer.GetPersonAsync();
+            if (person is not null)
+            {
+                model = new CreatePersonDto()
+                    {
+                        FullName = person.FullName,
+                        Dob = person.Dob
+                    };
+
+                StateHasChanged();
+            }
+        }
+    }
+
     public async Task Submit()
     {
         Person person = Person.Create(
